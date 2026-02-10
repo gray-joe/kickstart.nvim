@@ -192,14 +192,14 @@ require('lazy').setup({
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
-        -- `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+          live_grep = {
+            additional_args = { '--hidden' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -207,7 +207,6 @@ require('lazy').setup({
         },
       }
 
-      -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
@@ -429,9 +428,8 @@ require('lazy').setup({
       local servers = {
         bashls = {},
         clangd = {},
-        csharp_ls = {},
-        ts_ls = {},
-        pyright = {},
+        copilot = {},
+        -- csharp_ls = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -441,6 +439,8 @@ require('lazy').setup({
             },
           },
         },
+        pyright = {},
+        ts_ls = {},
       }
 
       local ensure_installed = vim.tbl_keys(servers or {})
@@ -642,6 +642,9 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+  },
+  {
+    'github/copilot.vim',
   },
 
   require 'kickstart.plugins.debug',
