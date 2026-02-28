@@ -14,6 +14,7 @@ return {
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
+        always_show = { '.claude' },
       },
       window = {
         mappings = {
